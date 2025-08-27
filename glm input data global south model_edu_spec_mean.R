@@ -11,13 +11,13 @@ library(ggmcmc)
 library(gridExtra)
 library(matrixStats)
 
-setwd("K:/project/BayesEdu/Fertility/Afua")
+setwd(".")
 
 
 #Read in old Bayesian Estimates
 
-old_data_Africa<-read_excel("K:/project/BayesEdu/Fertility/Afua/BESFR_estimates Africa.xlsx")
-old_data_LA<-read_excel("K:/project/BayesEdu/Fertility/Afua/BESFR_estimates Latin America.xlsx")
+old_data_Africa<-read_excel("./BESFR_estimates Africa.xlsx")
+old_data_LA<-read_excel("./BESFR_estimates Latin America.xlsx")
 
 #Join the data!
 old_data<-full_join(old_data_Africa,old_data_LA)
@@ -371,7 +371,7 @@ for(Country_ in Countries) {
   
 }
 
-pdf("K:/project/BayesEdu/Fertility/Afua/All countries Bayesian codes/Sensitivity/ESASFR init vs data qaul glmmodel_edu_spec_mean.pdf", width=12,onefile = T)
+pdf("./All countries Bayesian codes/Sensitivity/ESASFR init vs data qaul glmmodel_edu_spec_mean.pdf", width=12,onefile = T)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -382,7 +382,7 @@ dev.off()
 
 
 #Plot against DHS cleaned values
-Cleaned_DHS_esasfr<-read_excel("K:/project/BayesEdu/Fertility/Afua/Cleaned Data All_DHS/Cleaned_DHS.xlsx",sheet="ESASFR_5")
+Cleaned_DHS_esasfr<-read_excel("./Cleaned Data All_DHS/Cleaned_DHS.xlsx",sheet="ESASFR_5")
 
 colnames(Cleaned_DHS_esasfr)[8]<-"Age Group"
 Cleaned_DHS_esasfr$`Age Group`[Cleaned_DHS_esasfr$`Age Group`==15]<-"15-19"
@@ -424,7 +424,7 @@ for(Country_ in Countries) {
 }
 
 
-pdf("K:/project/BayesEdu/Fertility/Afua/All countries Bayesian codes/Sensitivity/ESASFR_dhs vs data qaul glmmodel_edu_spec_mean.pdf", width=15,height=12,onefile = T)
+pdf("./All countries Bayesian codes/Sensitivity/ESASFR_dhs vs data qaul glmmodel_edu_spec_mean.pdf", width=15,height=12,onefile = T)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -450,7 +450,7 @@ colnames(bayesdat_UN_1)[1]<-"Median"
 bayesdat_UN_1<-cbind(gather(dat_global_southedu2_1,"Age Group","ASFR",3:9)[,-4],bayesdat_UN_1)
 
 #Read in UN values of ASFR
-ASFR_UN<-read_excel("K:/project/BayesEdu/Fertility/Afua/UN_datasets3.xlsx",sheet="New ASFR")
+ASFR_UN<-read_excel("./UN_datasets3.xlsx",sheet="New ASFR")
 
 
 for(Country_ in Countries) {
@@ -474,7 +474,7 @@ for(Country_ in Countries) {
   
 }
 
-pdf("K:/project/BayesEdu/Fertility/Afua/All countries Bayesian codes/Sensitivity/ASFR UN vs data qaul glmmodel_edu_spec_mean.pdf",width = 12, onefile = TRUE)
+pdf("./All countries Bayesian codes/Sensitivity/ASFR UN vs data qaul glmmodel_edu_spec_mean.pdf",width = 12, onefile = TRUE)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -500,7 +500,7 @@ colnames(bayesdat_TFR_1)[1]<-"Median"
 bayesdat_TFR_1<-cbind(dat_global_southedu2_1[,c(1,2)],bayesdat_TFR_1)
 
 #Read in TFR values of TFR
-TFR_UN<-read_excel("K:/project/BayesEdu/Fertility/Afua/UN_datasets3.xlsx",sheet="UN_tfr")
+TFR_UN<-read_excel("./UN_datasets3.xlsx",sheet="UN_tfr")
 TFR_UN<-TFR_UN%>%filter(Region%in%c("Africa","North Africa"))
 
 TFR_UN<-ASFR_UN%>%
@@ -614,7 +614,7 @@ bayesdat_global_south2<-rbind(bayesdat_global_south2,bayesdat_global_south_42_)
 
 
 #Plot with DHS cleaned data set
-cleaned_DHS<-read_excel("K:/project/BayesEdu/Fertility/Afua/Cleaned Data All_DHS/Cleaned_DHS.xlsx",sheet="ESTFR_5")
+cleaned_DHS<-read_excel("./Cleaned Data All_DHS/Cleaned_DHS.xlsx",sheet="ESTFR_5")
 cleaned_DHS<-cleaned_DHS%>%
   mutate(Education=factor(Education, levels=c("No Education","Primary Education","Secondary Education","Higher Education")))
 
@@ -623,7 +623,7 @@ cleaned_DHS<-cleaned_DHS%>%
 bayesdat_global_south2<-bayesdat_global_south2%>%
   mutate(Education=factor(Education, levels=c("No Education","Primary Education","Secondary Education","Higher Education")))
 
-pdf("K:/project/BayesEdu/Fertility/Afua/All countries Bayesian codes/Sensitivity/ESTFR_dhs vs data qaul glmmodel_edu_spec_mean.pdf",width = 12, onefile = TRUE)
+pdf("./All countries Bayesian codes/Sensitivity/ESTFR_dhs vs data qaul glmmodel_edu_spec_mean.pdf",width = 12, onefile = TRUE)
 
 for(Country_ in Countries) {
   Country_plots[[Country_]] = ggplot()+ 
@@ -668,7 +668,7 @@ bayesdat_global_southtfr<-bayesdat_TFR_1%>%dplyr::select("Country","Year","Upper
 
 write_xlsx(list("BESASFR"=bayesdat_global_southesasfr,"BESTFR"=bayesdat_global_southestfr,
                 "ASFR"=bayesdat_global_southasfr,"TFR"=bayesdat_global_southtfr),
-           path ="K:/project/BayesEdu/Fertility/Afua/All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_edu_spec_mean.xlsx", col_names=TRUE)
+           path ="./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_edu_spec_mean.xlsx", col_names=TRUE)
 
 
 

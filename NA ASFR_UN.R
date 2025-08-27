@@ -12,9 +12,9 @@ library(ggmcmc)
 library(gridExtra)
 
 
-dat_africaedu2_<-read_excel("K:/project/BayesEdu/Fertility/Afua/Bayesglmmodel_estimates.xlsx")%>%filter(Region%in%c("Africa","North Africa"))
+dat_africaedu2_<-read_excel("./Bayesglmmodel_estimates.xlsx")%>%filter(Region%in%c("Africa","North Africa"))
 
-cleaned_DHS_ASFR<-read_excel("K:/project/BayesEdu/Fertility/Afua/Cleaned Data All_DHS/Cleaned_DHS_Africa.xlsx",sheet="ASFR_5")
+cleaned_DHS_ASFR<-read_excel("./Cleaned Data All_DHS/Cleaned_DHS_Africa.xlsx",sheet="ASFR_5")
 
 cleaned_DHS_ASFR<-cleaned_DHS_ASFR%>%filter(Region%in%c("Africa","North Africa"))
 cleaned_DHS_ASFR$Age[cleaned_DHS_ASFR$Age==15]<-"15-19"
@@ -27,7 +27,7 @@ cleaned_DHS_ASFR$Age[cleaned_DHS_ASFR$Age==45]<-"45-49"
 
 
 #Read in UN data
-UN_asfr<-read_excel("K:/project/BayesEdu/Fertility/Afua/UN_datasets3.xlsx",sheet="New ASFR")
+UN_asfr<-read_excel("./UN_datasets3.xlsx",sheet="New ASFR")
 asfr_UN_<-UN_asfr%>%filter(Region%in%c("Africa","North Africa"), !Year%in%c("1955-1960", "1960-1965", "1965-1970"))
 
 
@@ -67,19 +67,19 @@ estfr_d1_1<-estfr_d1_1[order(estfr_d1_1$Country), ]
 
 
 ###Bringing the WIC data in to be population of women by level of education
-wice_dat_africa_1<-read_excel("K:/project/BayesEdu/Fertility/Afua/WIC_datasets.xlsx",sheet="WIC_highedu")
+wice_dat_africa_1<-read_excel("./WIC_datasets.xlsx",sheet="WIC_highedu")
 wice_dat_africa_1<-wice_dat_africa_1%>%filter(`Country code`%in%unique(asfr_UN_$`Country code`))
 
 
-wice_dat_africa_2<-read_excel("K:/project/BayesEdu/Fertility/Afua/WIC_datasets.xlsx",sheet="WIC_noedu")
+wice_dat_africa_2<-read_excel("./WIC_datasets.xlsx",sheet="WIC_noedu")
 wice_dat_africa_2<-wice_dat_africa_2%>%filter(`Country code`%in%unique(asfr_UN_$`Country code`))
 
 
-wice_dat_africa_3<-read_excel("K:/project/BayesEdu/Fertility/Afua/WIC_datasets.xlsx",sheet="WIC_priedu")
+wice_dat_africa_3<-read_excel("./WIC_datasets.xlsx",sheet="WIC_priedu")
 wice_dat_africa_3<-wice_dat_africa_3%>%filter(`Country code`%in%unique(asfr_UN_$`Country code`))
 
 
-wice_dat_africa_4<-read_excel("K:/project/BayesEdu/Fertility/Afua/WIC_datasets.xlsx",sheet="WIC_secedu")
+wice_dat_africa_4<-read_excel("./WIC_datasets.xlsx",sheet="WIC_secedu")
 wice_dat_africa_4<-wice_dat_africa_4%>%filter(`Country code`%in%unique(asfr_UN_$`Country code`))
 
 
@@ -246,7 +246,7 @@ colnames(bayesdat_UN_na1)[1]<-"Median"
 bayesdat_UN_na1<-cbind(gather(dat_africaedu2_1,"Age Group","ASFR",3:9)[,-4],bayesdat_UN_na1)
 
 #Read in UN values of ASFR
-ASFR_UN<-read_excel("K:/project/BayesEdu/Fertility/Afua/UN_datasets3.xlsx",sheet="New ASFR")
+ASFR_UN<-read_excel("./UN_datasets3.xlsx",sheet="New ASFR")
 # looping over unique countries
 Countries<-unique(bayesdat_UN_na1$Country)
 Country_plots<-list()
@@ -273,7 +273,7 @@ for(Country_ in Countries) {
 }
 
 
-pdf("K:/project/BayesEdu/Fertility/Afua/African Model/03052023 SSA WPP22 benchmark ESTFR/NA_0.05_ASFR.pdf",width = 12, onefile = TRUE)
+pdf("./African Model/03052023 SSA WPP22 benchmark ESTFR/NA_0.05_ASFR.pdf",width = 12, onefile = TRUE)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -308,7 +308,7 @@ for(Country_ in Countries) {
 }
 
 
-pdf("K:/project/BayesEdu/Fertility/Afua/African Model/03052023 SSA WPP22 benchmark ESTFR/NA_0.05_ASFR_DHS.pdf",width = 12, onefile = TRUE)
+pdf("./African Model/03052023 SSA WPP22 benchmark ESTFR/NA_0.05_ASFR_DHS.pdf",width = 12, onefile = TRUE)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -427,7 +427,7 @@ colnames(bayesdat_UN_na2)[1]<-"Median"
 bayesdat_UN_na2<-cbind(gather(dat_africaedu2_1,"Age Group","ASFR",3:9)[,-4],bayesdat_UN_na2)
 
 #Read in UN values of ASFR
-ASFR_UN<-read_excel("K:/project/BayesEdu/Fertility/Afua/UN_datasets3.xlsx",sheet="New ASFR")
+ASFR_UN<-read_excel("./UN_datasets3.xlsx",sheet="New ASFR")
 
 for(Country_ in Countries) {
   Country_plots[[Country_]] = ggplot()+  
@@ -452,7 +452,7 @@ for(Country_ in Countries) {
 }
 
 
-pdf("K:/project/BayesEdu/Fertility/Afua/African Model/03052023 SSA WPP22 benchmark ESTFR/NA_0.10_ASFR.pdf",width = 12, onefile = TRUE)
+pdf("./African Model/03052023 SSA WPP22 benchmark ESTFR/NA_0.10_ASFR.pdf",width = 12, onefile = TRUE)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -485,7 +485,7 @@ for(Country_ in Countries) {
 }
 
 
-pdf("K:/project/BayesEdu/Fertility/Afua/African Model/03052023 SSA WPP22 benchmark ESTFR/NA_0.10_ASFR_DHS.pdf",width = 12, onefile = TRUE)
+pdf("./African Model/03052023 SSA WPP22 benchmark ESTFR/NA_0.10_ASFR_DHS.pdf",width = 12, onefile = TRUE)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -605,7 +605,7 @@ colnames(bayesdat_UN_na3)[1]<-"Median"
 bayesdat_UN_na3<-cbind(gather(dat_africaedu2_1,"Age Group","ASFR",3:9)[,-4],bayesdat_UN_na3)
 
 #Read in UN values of ASFR
-ASFR_UN<-read_excel("K:/project/BayesEdu/Fertility/Afua/UN_datasets3.xlsx",sheet="New ASFR")
+ASFR_UN<-read_excel("./UN_datasets3.xlsx",sheet="New ASFR")
 
 for(Country_ in Countries) {
   Country_plots[[Country_]] = ggplot()+  
@@ -630,7 +630,7 @@ for(Country_ in Countries) {
 }
 
 
-pdf("K:/project/BayesEdu/Fertility/Afua/African Model/03052023 SSA WPP22 benchmark ESTFR/NA_0.15_ASFR.pdf",width = 12, onefile = TRUE)
+pdf("./African Model/03052023 SSA WPP22 benchmark ESTFR/NA_0.15_ASFR.pdf",width = 12, onefile = TRUE)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -662,7 +662,7 @@ for(Country_ in Countries) {
 }
 
 
-pdf("K:/project/BayesEdu/Fertility/Afua/African Model/03052023 SSA WPP22 benchmark ESTFR/NA_0.15_ASFR_DHS.pdf",width = 12, onefile = TRUE)
+pdf("./African Model/03052023 SSA WPP22 benchmark ESTFR/NA_0.15_ASFR_DHS.pdf",width = 12, onefile = TRUE)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -781,7 +781,7 @@ colnames(bayesdat_UN_na4)[1]<-"Median"
 bayesdat_UN_na4<-cbind(gather(dat_africaedu2_1,"Age Group","ASFR",3:9)[,-4],bayesdat_UN_na4)
 
 #Read in UN values of ASFR
-ASFR_UN<-read_excel("K:/project/BayesEdu/Fertility/Afua/UN_datasets3.xlsx",sheet="New ASFR")
+ASFR_UN<-read_excel("./UN_datasets3.xlsx",sheet="New ASFR")
 
 for(Country_ in Countries) {
   Country_plots[[Country_]] = ggplot()+  
@@ -806,7 +806,7 @@ for(Country_ in Countries) {
 }
 
 
-pdf("K:/project/BayesEdu/Fertility/Afua/African Model/03052023 SSA WPP22 benchmark ESTFR/NA_0.2_ASFR.pdf",width = 12, onefile = TRUE)
+pdf("./African Model/03052023 SSA WPP22 benchmark ESTFR/NA_0.2_ASFR.pdf",width = 12, onefile = TRUE)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -838,7 +838,7 @@ for(Country_ in Countries) {
 }
 
 
-pdf("K:/project/BayesEdu/Fertility/Afua/African Model/03052023 SSA WPP22 benchmark ESTFR/NA_0.2_ASFR_DHS.pdf",width = 12, onefile = TRUE)
+pdf("./African Model/03052023 SSA WPP22 benchmark ESTFR/NA_0.2_ASFR_DHS.pdf",width = 12, onefile = TRUE)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -959,7 +959,7 @@ colnames(bayesdat_UN_na5)[1]<-"Median"
 bayesdat_UN_na5<-cbind(gather(dat_africaedu2_1,"Age Group","ASFR",3:9)[,-4],bayesdat_UN_na5)
 
 #Read in UN values of ASFR
-ASFR_UN<-read_excel("K:/project/BayesEdu/Fertility/Afua/UN_datasets3.xlsx",sheet="New ASFR")
+ASFR_UN<-read_excel("./UN_datasets3.xlsx",sheet="New ASFR")
 
 for(Country_ in Countries) {
   Country_plots[[Country_]] = ggplot()+  
@@ -983,7 +983,7 @@ for(Country_ in Countries) {
 }
 
 
-pdf("K:/project/BayesEdu/Fertility/Afua/African Model/03052023 SSA WPP22 benchmark ESTFR/NA_0.30_ASFR.pdf",width = 12, onefile = TRUE)
+pdf("./African Model/03052023 SSA WPP22 benchmark ESTFR/NA_0.30_ASFR.pdf",width = 12, onefile = TRUE)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -1019,7 +1019,7 @@ for(Country_ in Countries) {
 }
 
 
-pdf("K:/project/BayesEdu/Fertility/Afua/African Model/03052023 SSA WPP22 benchmark ESTFR/NA_0.30_ASFR_DHS.pdf",width = 12, onefile = TRUE)
+pdf("./African Model/03052023 SSA WPP22 benchmark ESTFR/NA_0.30_ASFR_DHS.pdf",width = 12, onefile = TRUE)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -1121,7 +1121,7 @@ DHS_na5<-ggplot()+
 
 library(gridExtra)
 
-pdf("K:/project/BayesEdu/Fertility/Afua/African Model/03052023 SSA WPP22 benchmark ESTFR/NA ASFR model comparison.pdf",width = 12,height=28, onefile = TRUE)
+pdf("./African Model/03052023 SSA WPP22 benchmark ESTFR/NA ASFR model comparison.pdf",width = 12,height=28, onefile = TRUE)
 grid.arrange(UN_na1, DHS_na1, UN_na2, DHS_na2, UN_na3, DHS_na3, UN_na4, DHS_na4, UN_na5, DHS_na5, ncol = 2)
 dev.off()
 
@@ -1152,7 +1152,7 @@ for(Country_ in Countries) {
 }
 
 
-pdf("K:/project/BayesEdu/Fertility/Afua/African Model/03052023 SSA WPP22 benchmark ESTFR/DHS vs UN.pdf",width = 12, onefile = TRUE)
+pdf("./African Model/03052023 SSA WPP22 benchmark ESTFR/DHS vs UN.pdf",width = 12, onefile = TRUE)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -1200,7 +1200,7 @@ for(Country_ in Countries) {
   
 }   
 
-pdf("K:/project/BayesEdu/Fertility/Afua/African Model/03052023 SSA WPP22 benchmark ESTFR/NAs_ UN.pdf",width = 12, onefile = TRUE)
+pdf("./African Model/03052023 SSA WPP22 benchmark ESTFR/NAs_ UN.pdf",width = 12, onefile = TRUE)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }

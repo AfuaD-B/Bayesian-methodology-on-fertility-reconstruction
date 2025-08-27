@@ -5,39 +5,39 @@ library(ggplot2)
 library(gridExtra)
 #We call in our estimates and create a new column to help identify the models in a plot!
 
-gamma47<-read_excel("K:/project/BayesEdu/Fertility/Afua/All countries Bayesian codes/Sensitivity/BESFR_ data qaul model_gamma_47.xlsx", sheet = "BESASFR")
+gamma47<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_ data qaul model_gamma_47.xlsx", sheet = "BESASFR")
 gamma47$Prec_model<-"Gamma(1/sd(se)^2,sd(se)^2)"
 gamma47<-gamma47%>%mutate(Education=factor(Education, levels = c("No Education","Primary Education","Secondary Education","Higher Education")))
 
 
-gamma_alpha_beta<-read_excel("K:/project/BayesEdu/Fertility/Afua/All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_alpha_beta.xlsx", sheet = "BESASFR")
+gamma_alpha_beta<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_alpha_beta.xlsx", sheet = "BESASFR")
 gamma_alpha_beta$Prec_model<-"Gamma((sd(se)/mean(se))^2,(sd(se)^2)/mean(se))"
 gamma_alpha_beta<-gamma_alpha_beta%>%mutate(Education=factor(Education, levels = c("No Education","Primary Education","Secondary Education","Higher Education")))
 
 
-gamma_pred_prec<-read_excel("K:/project/BayesEdu/Fertility/Afua/All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_pred_prec.xlsx", sheet = "BESASFR")
+gamma_pred_prec<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_pred_prec.xlsx", sheet = "BESASFR")
 gamma_pred_prec$Prec_model<-"Gamma(1/sd(pred)^2,sd(pred)^2)"
 gamma_pred_prec<-gamma_pred_prec%>%mutate(Education=factor(Education, levels = c("No Education","Primary Education","Secondary Education","Higher Education")))
 
 
 
-gamma_edu_spec_mean<-read_excel("K:/project/BayesEdu/Fertility/Afua/All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_edu_spec_mean.xlsx", sheet = "BESASFR")
+gamma_edu_spec_mean<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_edu_spec_mean.xlsx", sheet = "BESASFR")
 gamma_edu_spec_mean$Prec_model<-"Gamma(1/mean(edu_se),sd(edu_se)^2)"
 gamma_edu_spec_mean<-gamma_edu_spec_mean%>%mutate(Education=factor(Education, levels = c("No Education","Primary Education","Secondary Education","Higher Education")))
 
 
-gamma_edu_spec_sd<-read_excel("K:/project/BayesEdu/Fertility/Afua/All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_edu_spec_sd.xlsx", sheet = "BESASFR")
+gamma_edu_spec_sd<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_edu_spec_sd.xlsx", sheet = "BESASFR")
 gamma_edu_spec_sd$Prec_model<-"Gamma(1/sd(edu_se)^2,sd(edu_se)^2)"
 gamma_edu_spec_sd<-gamma_edu_spec_sd%>%mutate(Education=factor(Education, levels = c("No Education","Primary Education","Secondary Education","Higher Education")))
 
 
-gamma_edu_se_sd_cya<-read_excel("K:/project/BayesEdu/Fertility/Afua/All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_edu_spec_sd.xlsx", sheet = "BESASFR")
+gamma_edu_se_sd_cya<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_edu_spec_sd.xlsx", sheet = "BESASFR")
 gamma_edu_se_sd_cya$Prec_model<-"Gamma(1/sd(age_se)^2,sd(age_se)^2)"
 gamma_edu_se_sd_cya<-gamma_edu_se_sd_cya%>%mutate(Education=factor(Education, levels = c("No Education","Primary Education","Secondary Education","Higher Education")))
 
 
 
-gamma_edu_se_sd_cye<-read_excel("K:/project/BayesEdu/Fertility/Afua/All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_edu_spec_sd.xlsx", sheet = "BESASFR")
+gamma_edu_se_sd_cye<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_edu_spec_sd.xlsx", sheet = "BESASFR")
 gamma_edu_se_sd_cye$Prec_model<-"Gamma(1/sd(edu_se)^2,sd(edu_se)^2)"
 gamma_edu_se_sd_cye<-gamma_edu_se_sd_cye%>%mutate(Education=factor(Education, levels = c("No Education","Primary Education","Secondary Education","Higher Education")))
 
@@ -89,7 +89,7 @@ for(Country_ in Countries) {
   
 }
 
-pdf("K:/project/BayesEdu/Fertility/Afua/All countries Bayesian codes/Sensitivity/BESASFR model comparision.pdf", width=15,onefile = T)
+pdf("./All countries Bayesian codes/Sensitivity/BESASFR model comparision.pdf", width=15,onefile = T)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }

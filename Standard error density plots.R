@@ -13,7 +13,7 @@ library(gridExtra)
 
 
 
-se_dat<-read_excel("K:/project/BayesEdu/Fertility/Afua/Bayesglmmodel_estimates.xlsx")%>%filter(Region%in%c("Africa","North Africa"))
+se_dat<-read_excel("./Bayesglmmodel_estimates.xlsx")%>%filter(Region%in%c("Africa","North Africa"))
 
 
 ###########################################################################################################################
@@ -259,7 +259,7 @@ ggplot()+
 #Update this plot later
 #posterior distribution, that is, our estimates
 
-beasfr<-read_excel("K:/project/BayesEdu/Fertility/Afua/African Model/01022023 SSA WPP22 update/BESFR_data qaul bayesglmmodel_se_sd_c_y_e.xlsx",sheet="BESASFR")
+beasfr<-read_excel("./African Model/01022023 SSA WPP22 update/BESFR_data qaul bayesglmmodel_se_sd_c_y_e.xlsx",sheet="BESASFR")
 
 
 

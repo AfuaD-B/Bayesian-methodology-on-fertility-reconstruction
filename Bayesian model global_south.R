@@ -1,4 +1,4 @@
-#In this model the focus is on Education specific rates.
+#In this model the focus is on Education specific rates. (This is the final main model)
 library(readxl)
 library(MCMCvis)
 library(tidyverse)
@@ -11,13 +11,14 @@ library(ggmcmc)
 library(gridExtra)
 library(matrixStats)
 
-setwd("K:/project/BayesEdu/Fertility/Afua")
+#Set the working directory
+setwd(".")
 
 
 #Read in old Bayesian Estimates
 
-old_data_Africa<-read_excel("K:/project/BayesEdu/Fertility/Afua/BESFR_estimates Africa.xlsx")
-old_data_LA<-read_excel("K:/project/BayesEdu/Fertility/Afua/BESFR_estimates Latin America.xlsx")
+old_data_Africa<-read_excel("./BESFR_estimates Africa.xlsx")
+old_data_LA<-read_excel("./BESFR_estimates Latin America.xlsx")
 
 #Join the data!
 old_data<-full_join(old_data_Africa,old_data_LA)

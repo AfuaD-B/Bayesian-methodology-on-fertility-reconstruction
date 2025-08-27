@@ -11,13 +11,13 @@ library(ggmcmc)
 library(gridExtra)
 library(matrixStats)
 
-setwd("K:/project/BayesEdu/Fertility/Afua")
+setwd(".")
 
 
 #Read in old Bayesian Estimates
 
-old_data_Africa<-read_excel("K:/project/BayesEdu/Fertility/Afua/BESFR_estimates Africa.xlsx")
-old_data_LA<-read_excel("K:/project/BayesEdu/Fertility/Afua/BESFR_estimates Latin America.xlsx")
+old_data_Africa<-read_excel("./BESFR_estimates Africa.xlsx")
+old_data_LA<-read_excel("./BESFR_estimates Latin America.xlsx")
 
 #Join the data!
 old_data<-full_join(old_data_Africa,old_data_LA)
@@ -798,7 +798,7 @@ for(Country_ in Countries) {
   
 }   
 
-pdf("K:/project/BayesEdu/Fertility/Afua/All countries Bayesian codes/Sensitivity/Validation_easfr.pdf",width = 12, onefile = TRUE)
+pdf("./All countries Bayesian codes/Sensitivity/Validation_easfr.pdf",width = 12, onefile = TRUE)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
