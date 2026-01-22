@@ -14,12 +14,12 @@ library(matrixStats)
 #set the working directory
 setwd(".")
 
-dat_global_southedu2_<-read_excel("./All countries Bayesian codes/GLM regional/glm_predict_all_reg3.xlsx")%>%
+dat_global_southedu2_<-read_excel("./glm_predict_all_reg3.xlsx")%>%
   filter(!Country%in%c("Papua New Guinea","Uzbekistan","Ukraine"))
 dat_global_southedu2_<-dat_global_southedu2_[order(dat_global_southedu2_$Country), -4]
 
 
-cleaned_DHS_ASFR<-read_excel("./Cleaned Data All_DHS/Cleaned_DHS updated.xlsx",sheet="ASFR_5")
+cleaned_DHS_ASFR<-read_excel("./Cleaned_DHS updated.xlsx",sheet="ASFR_5")
 
 cleaned_DHS_ASFR<-cleaned_DHS_ASFR%>%filter(!Country%in%c("Papua New Guinea","Uzbekistan","Ukraine"))
 cleaned_DHS_ASFR$Age[cleaned_DHS_ASFR$Age==15]<-"15-19"
@@ -298,7 +298,7 @@ for(Country_ in Countries) {
 }
 
 
-pdf("./All countries Bayesian codes/Validation/NA_0.05_ASFR.pdf",width = 12, onefile = TRUE)
+pdf("./NA_0.05_ASFR.pdf",width = 12, onefile = TRUE)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -333,7 +333,7 @@ for(Country_ in Countries) {
 }
 
 
-pdf("./All countries Bayesian codes/Validation/NA_0.05_ASFR_DHS.pdf",width = 12, onefile = TRUE)
+pdf("./NA_0.05_ASFR_DHS.pdf",width = 12, onefile = TRUE)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -410,7 +410,7 @@ for(Country_ in Countries) {
 }
 
 
-pdf("./All countries Bayesian codes/Validation/NA_0.10_ASFR.pdf",width = 12, onefile = TRUE)
+pdf("./NA_0.10_ASFR.pdf",width = 12, onefile = TRUE)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -443,7 +443,7 @@ for(Country_ in Countries) {
 }
 
 
-pdf("./All countries Bayesian codes/Validation/NA_0.10_ASFR_DHS.pdf",width = 12, onefile = TRUE)
+pdf("./NA_0.10_ASFR_DHS.pdf",width = 12, onefile = TRUE)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -521,7 +521,7 @@ for(Country_ in Countries) {
 }
 
 
-pdf("./All countries Bayesian codes/Validation/NA_0.15_ASFR.pdf",width = 12, onefile = TRUE)
+pdf("./NA_0.15_ASFR.pdf",width = 12, onefile = TRUE)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -553,7 +553,7 @@ for(Country_ in Countries) {
 }
 
 
-pdf("./All countries Bayesian codes/Validation/NA_0.15_ASFR_DHS.pdf",width = 12, onefile = TRUE)
+pdf("./NA_0.15_ASFR_DHS.pdf",width = 12, onefile = TRUE)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -629,7 +629,7 @@ for(Country_ in Countries) {
 }
 
 
-pdf("./All countries Bayesian codes/Validation/NA_0.2_ASFR.pdf",width = 12, onefile = TRUE)
+pdf("./NA_0.2_ASFR.pdf",width = 12, onefile = TRUE)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -661,7 +661,7 @@ for(Country_ in Countries) {
 }
 
 
-pdf("./All countries Bayesian codes/Validation/NA_0.2_ASFR_DHS.pdf",width = 12, onefile = TRUE)
+pdf("./NA_0.2_ASFR_DHS.pdf",width = 12, onefile = TRUE)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -738,7 +738,7 @@ for(Country_ in Countries) {
 }
 
 
-pdf("./All countries Bayesian codes/Validation/NA_0.30_ASFR.pdf",width = 12, onefile = TRUE)
+pdf("./NA_0.30_ASFR.pdf",width = 12, onefile = TRUE)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -774,7 +774,7 @@ for(Country_ in Countries) {
 }
 
 
-pdf("./All countries Bayesian codes/Validation/NA_0.30_ASFR_DHS.pdf",width = 12, onefile = TRUE)
+pdf("./NA_0.30_ASFR_DHS.pdf",width = 12, onefile = TRUE)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -876,7 +876,7 @@ DHS_na5<-ggplot()+
 
 library(gridExtra)
 
-pdf("./All countries Bayesian codes/Validation/NA ASFR model comparison.pdf",width = 12,height=28, onefile = TRUE)
+pdf("./NA ASFR model comparison.pdf",width = 12,height=28, onefile = TRUE)
 grid.arrange(UN_na1, DHS_na1, UN_na2, DHS_na2, UN_na3, DHS_na3, UN_na4, DHS_na4, UN_na5, DHS_na5, ncol = 2)
 dev.off()
 
@@ -907,7 +907,7 @@ for(Country_ in Countries) {
 }
 
 
-pdf("./All countries Bayesian codes/Validation/DHS vs UN.pdf",width = 12, onefile = TRUE)
+pdf("./DHS vs UN.pdf",width = 12, onefile = TRUE)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -956,11 +956,12 @@ for(Country_ in Countries) {
   
 }   
 
-pdf("./All countries Bayesian codes/Validation/NAs UN.pdf",width = 12, onefile = TRUE)
+pdf("./NAs UN.pdf",width = 12, onefile = TRUE)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
 dev.off()
+
 
 
 
