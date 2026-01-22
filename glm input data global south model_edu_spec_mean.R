@@ -13,7 +13,7 @@ library(matrixStats)
 
 setwd(".")
 
-dat_global_southedu2_<-read_excel("./All countries Bayesian codes/GLM regional/glm_predict_all_reg3.xlsx")%>%
+dat_global_southedu2_<-read_excel("./glm_predict_all_reg3.xlsx")%>%
   filter(!Country%in%c("Papua New Guinea","Uzbekistan","Ukraine"))
 dat_global_southedu2_<-dat_global_southedu2_[order(dat_global_southedu2_$Country), -4]
 
@@ -353,7 +353,7 @@ for(Country_ in Countries) {
   
 }
 
-pdf("./All countries Bayesian codes/Sensitivity/ESASFR init vs data qaul glmmodel_edu_spec_mean.pdf", width=12,onefile = T)
+pdf("./ESASFR init vs data qaul glmmodel_edu_spec_mean.pdf", width=12,onefile = T)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -406,7 +406,7 @@ for(Country_ in Countries) {
 }
 
 
-pdf("./All countries Bayesian codes/Sensitivity/ESASFR_dhs vs data qaul glmmodel_edu_spec_mean.pdf", width=15,height=12,onefile = T)
+pdf("./ESASFR_dhs vs data qaul glmmodel_edu_spec_mean.pdf", width=15,height=12,onefile = T)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -456,7 +456,7 @@ for(Country_ in Countries) {
   
 }
 
-pdf("./All countries Bayesian codes/Sensitivity/ASFR UN vs data qaul glmmodel_edu_spec_mean.pdf",width = 12, onefile = TRUE)
+pdf("./ASFR UN vs data qaul glmmodel_edu_spec_mean.pdf",width = 12, onefile = TRUE)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -605,7 +605,7 @@ cleaned_DHS<-cleaned_DHS%>%
 bayesdat_global_south2<-bayesdat_global_south2%>%
   mutate(Education=factor(Education, levels=c("No Education","Primary Education","Secondary Education","Higher Education")))
 
-pdf("./All countries Bayesian codes/Sensitivity/ESTFR_dhs vs data qaul glmmodel_edu_spec_mean.pdf",width = 12, onefile = TRUE)
+pdf("./ESTFR_dhs vs data qaul glmmodel_edu_spec_mean.pdf",width = 12, onefile = TRUE)
 
 for(Country_ in Countries) {
   Country_plots[[Country_]] = ggplot()+ 
@@ -635,7 +635,7 @@ dev.off()
 
 
 #################################################################################
-#Save results in Exce;
+#Save results in Excel
 
 library(writexl)
 
@@ -650,7 +650,8 @@ bayesdat_global_southtfr<-bayesdat_TFR_1%>%dplyr::select("Country","Year","Upper
 
 write_xlsx(list("BESASFR"=bayesdat_global_southesasfr,"BESTFR"=bayesdat_global_southestfr,
                 "ASFR"=bayesdat_global_southasfr,"TFR"=bayesdat_global_southtfr),
-           path ="./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_edu_spec_mean.xlsx", col_names=TRUE)
+           path ="./BESFR_data qaul glmmodel_edu_spec_mean.xlsx", col_names=TRUE)
+
 
 
 
