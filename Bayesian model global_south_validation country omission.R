@@ -18,7 +18,7 @@ dat_global_southedu2_<-read_excel("./glm_predict_all_reg3.xlsx")%>%
 dat_global_southedu2_<-dat_global_southedu2_[order(dat_global_southedu2_$Country), -4]
 
 
-cleaned_DHS_ASFR<-read_excel("./Cleaned Data All_DHS/Cleaned_DHS updated.xlsx",sheet="ASFR_5")
+cleaned_DHS_ASFR<-read_excel("./Cleaned_DHS updated.xlsx",sheet="ASFR_5")
 
 cleaned_DHS_ASFR<-cleaned_DHS_ASFR%>%filter(!Country%in%c("Papua New Guinea","Uzbekistan","Ukraine"))
 cleaned_DHS_ASFR$Age[cleaned_DHS_ASFR$Age==15]<-"15-19"
@@ -956,6 +956,7 @@ for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
 dev.off()
+
 
 
 
