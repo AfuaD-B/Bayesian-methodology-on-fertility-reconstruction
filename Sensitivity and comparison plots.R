@@ -8,21 +8,21 @@ library(gridExtra)
 
 
 #We focus on ESAFR first
-Main_model<-read_excel("./All countries Bayesian codes/BESFR_estimates global_south.xlsx",sheet = "BESASFR")
+Main_model<-read_excel("./BESFR_estimates global_south.xlsx",sheet = "BESASFR")
   
-model1<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_se_sd_c_y_a.xlsx",sheet = "BESASFR")
+model1<-read_excel("./BESFR_data qaul glmmodel_se_sd_c_y_a.xlsx",sheet = "BESASFR")
 
-model2<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_edu_spec_sd.xlsx",sheet = "BESASFR")
+model2<-read_excel("./BESFR_data qaul glmmodel_edu_spec_sd.xlsx",sheet = "BESASFR")
 
-model3<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_edu_spec_mean.xlsx",sheet = "BESASFR")
+model3<-read_excel("./BESFR_data qaul glmmodel_edu_spec_mean.xlsx",sheet = "BESASFR")
 
-model4<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_ data qaul model_gamma_47.xlsx",sheet = "BESASFR")
+model4<-read_excel("./BESFR_ data qaul model_gamma_47.xlsx",sheet = "BESASFR")
 
-model5<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_pred_prec.xlsx",sheet = "BESASFR")
+model5<-read_excel("./BESFR_data qaul glmmodel_pred_prec.xlsx",sheet = "BESASFR")
 
-model6<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_alpha_beta.xlsx",sheet = "BESASFR")
+model6<-read_excel("./BESFR_data qaul glmmodel_alpha_beta.xlsx",sheet = "BESASFR")
 
-model7<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_se_sd_c_y_e.xlsx",sheet = "BESASFR")
+model7<-read_excel("./BESFR_data qaul glmmodel_se_sd_c_y_e.xlsx",sheet = "BESASFR")
 
 #Model Comparison plots for ESASFR
 
@@ -71,7 +71,7 @@ for(Country_ in Countries) {
   
 }
 
-pdf("./All countries Bayesian codes/Sensitivity/ESASFR_all_model comparison.pdf", width=12,onefile = T)
+pdf("./ESASFR_all_model comparison.pdf", width=12,onefile = T)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -84,21 +84,21 @@ dev.off()
 #Model Comparison for ASFR with UN
 
 #Read in ASFR data
-Main_model_asfr<-read_excel("./All countries Bayesian codes/BESFR_estimates global_south.xlsx",sheet = "ASFR")
+Main_model_asfr<-read_excel("./BESFR_estimates global_south.xlsx",sheet = "ASFR")
 
-model1_asfr<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_se_sd_c_y_a.xlsx",sheet = "ASFR")
+model1_asfr<-read_excel("./BESFR_data qaul glmmodel_se_sd_c_y_a.xlsx",sheet = "ASFR")
 
-model2_asfr<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_edu_spec_sd.xlsx",sheet = "ASFR")
+model2_asfr<-read_excel("./BESFR_data qaul glmmodel_edu_spec_sd.xlsx",sheet = "ASFR")
 
-model3_asfr<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_edu_spec_mean.xlsx",sheet = "ASFR")
+model3_asfr<-read_excel("./BESFR_data qaul glmmodel_edu_spec_mean.xlsx",sheet = "ASFR")
 
-model4_asfr<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_ data qaul model_gamma_47.xlsx",sheet = "ASFR")
+model4_asfr<-read_excel("./BESFR_ data qaul model_gamma_47.xlsx",sheet = "ASFR")
 
-model5_asfr<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_pred_prec.xlsx",sheet = "ASFR")
+model5_asfr<-read_excel("./BESFR_data qaul glmmodel_pred_prec.xlsx",sheet = "ASFR")
 
-model6_asfr<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_alpha_beta.xlsx",sheet = "ASFR")
+model6_asfr<-read_excel("./BESFR_data qaul glmmodel_alpha_beta.xlsx",sheet = "ASFR")
 
-model7_asfr<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_se_sd_c_y_e.xlsx",sheet = "ASFR")
+model7_asfr<-read_excel("./BESFR_data qaul glmmodel_se_sd_c_y_e.xlsx",sheet = "ASFR")
 
 #Read in UN values of ASFR
 ASFR_UN<-read_excel("./UN_datasets3.xlsx",sheet="New ASFR")
@@ -146,7 +146,7 @@ for(Country_ in Countries) {
   
 }
 
-pdf("./All countries Bayesian codes/Sensitivity/UN_ASFR_model_comparison.pdf", width=12,onefile = T)
+pdf("./UN_ASFR_model_comparison.pdf", width=12,onefile = T)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -159,21 +159,21 @@ dev.off()
 
 #Now we read in data for TFR and compare with UN
 
-Main_model_tfr<-read_excel("./All countries Bayesian codes/BESFR_estimates global_south.xlsx",sheet = "TFR")
+Main_model_tfr<-read_excel("./BESFR_estimates global_south.xlsx",sheet = "TFR")
 
-model1_tfr<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_se_sd_c_y_a.xlsx",sheet = "TFR")
+model1_tfr<-read_excel("./BESFR_data qaul glmmodel_se_sd_c_y_a.xlsx",sheet = "TFR")
 
-model2_tfr<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_edu_spec_sd.xlsx",sheet = "TFR")
+model2_tfr<-read_excel("./BESFR_data qaul glmmodel_edu_spec_sd.xlsx",sheet = "TFR")
 
-model3_tfr<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_edu_spec_mean.xlsx",sheet = "TFR")
+model3_tfr<-read_excel("./BESFR_data qaul glmmodel_edu_spec_mean.xlsx",sheet = "TFR")
 
-model4_tfr<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_ data qaul model_gamma_47.xlsx",sheet = "TFR")
+model4_tfr<-read_excel("./BESFR_ data qaul model_gamma_47.xlsx",sheet = "TFR")
 
-model5_tfr<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_pred_prec.xlsx",sheet = "TFR")
+model5_tfr<-read_excel("./BESFR_data qaul glmmodel_pred_prec.xlsx",sheet = "TFR")
 
-model6_tfr<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_alpha_beta.xlsx",sheet = "TFR")
+model6_tfr<-read_excel("./BESFR_data qaul glmmodel_alpha_beta.xlsx",sheet = "TFR")
 
-model7_tfr<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_se_sd_c_y_e.xlsx",sheet = "TFR")
+model7_tfr<-read_excel("./BESFR_data qaul glmmodel_se_sd_c_y_e.xlsx",sheet = "TFR")
 
 
 #Read in UN values of tfr
@@ -184,7 +184,7 @@ tfr_UN<-tfr_UN%>%filter(Country%in%Main_model$Country)
 
 
 
-pdf("./All countries Bayesian codes/Sensitivity/TFR_UN_model_comparison.pdf",width = 12, onefile = TRUE)
+pdf("./TFR_UN_model_comparison.pdf",width = 12, onefile = TRUE)
 
 ggplot() +
   geom_ribbon(Main_model_tfr,mapping=aes(x=Year,ymin=unlist(Lower_CI),
@@ -231,34 +231,34 @@ dev.off()
 
 
 #We now plot for ESTFR
-Main_model_estfr<-read_excel("./All countries Bayesian codes/BESFR_estimates global_south.xlsx",sheet = "BESTFR")%>%
+Main_model_estfr<-read_excel("./BESFR_estimates global_south.xlsx",sheet = "BESTFR")%>%
   mutate(Education=factor(Education, levels=c("No Education","Primary Education","Secondary Education","Higher Education")))
 
-model1_estfr<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_se_sd_c_y_a.xlsx",sheet = "BESTFR")%>%
+model1_estfr<-read_excel("./BESFR_data qaul glmmodel_se_sd_c_y_a.xlsx",sheet = "BESTFR")%>%
   mutate(Education=factor(Education, levels=c("No Education","Primary Education","Secondary Education","Higher Education")))
 
-model2_estfr<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_edu_spec_sd.xlsx",sheet = "BESTFR")%>%
+model2_estfr<-read_excel("./BESFR_data qaul glmmodel_edu_spec_sd.xlsx",sheet = "BESTFR")%>%
   mutate(Education=factor(Education, levels=c("No Education","Primary Education","Secondary Education","Higher Education")))
 
-model3_estfr<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_edu_spec_mean.xlsx",sheet = "BESTFR")%>%
+model3_estfr<-read_excel("./BESFR_data qaul glmmodel_edu_spec_mean.xlsx",sheet = "BESTFR")%>%
   mutate(Education=factor(Education, levels=c("No Education","Primary Education","Secondary Education","Higher Education")))
 
-model4_estfr<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_ data qaul model_gamma_47.xlsx",sheet = "BESTFR")%>%
+model4_estfr<-read_excel("./BESFR_ data qaul model_gamma_47.xlsx",sheet = "BESTFR")%>%
   mutate(Education=factor(Education, levels=c("No Education","Primary Education","Secondary Education","Higher Education")))
 
-model5_estfr<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_pred_prec.xlsx",sheet = "BESTFR")%>%
+model5_estfr<-read_excel("./BESFR_data qaul glmmodel_pred_prec.xlsx",sheet = "BESTFR")%>%
   mutate(Education=factor(Education, levels=c("No Education","Primary Education","Secondary Education","Higher Education")))
 
-model6_estfr<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_alpha_beta.xlsx",sheet = "BESTFR")%>%
+model6_estfr<-read_excel("./BESFR_data qaul glmmodel_alpha_beta.xlsx",sheet = "BESTFR")%>%
   mutate(Education=factor(Education, levels=c("No Education","Primary Education","Secondary Education","Higher Education")))
 
-model7_estfr<-read_excel("./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_se_sd_c_y_e.xlsx",sheet = "BESTFR")%>%
+model7_estfr<-read_excel("./BESFR_data qaul glmmodel_se_sd_c_y_e.xlsx",sheet = "BESTFR")%>%
   mutate(Education=factor(Education, levels=c("No Education","Primary Education","Secondary Education","Higher Education")))
 
 
 
 
-pdf("./All countries Bayesian codes/Sensitivity/ESTFR_all_model comparison.pdf",width = 12, onefile = TRUE)
+pdf("./ESTFR_all_model comparison.pdf",width = 12, onefile = TRUE)
 
 for(Country_ in Countries) {
   Country_plots[[Country_]] = ggplot() +
@@ -310,7 +310,7 @@ dev.off()
 
 #######################################################################################
 #Plotting for ASFR main model
-cleaned_DHS_ASFR<-read_excel("./All countries Bayesian codes/GLM regional/glm_predict_all_reg3.xlsx",sheet="ASFR_5")
+cleaned_DHS_ASFR<-read_excel("./GLM regional/glm_predict_all_reg3.xlsx",sheet="ASFR_5")
 
 cleaned_DHS_ASFR<-cleaned_DHS_ASFR
 cleaned_DHS_ASFR$Age[cleaned_DHS_ASFR$Age==15]<-"15-19"
@@ -532,7 +532,7 @@ DHS_others7<-ggplot(cleaned_DHS_ASFR,aes(y=ASFR))+
 
 
 ##Plotting Education specific plots starting with No education DHS
-cleaned_DHS_ESASFR<-read_excel("./All countries Bayesian codes/GLM regional/glm_predict_all_reg3.xlsx",sheet="ESASFR_5")
+cleaned_DHS_ESASFR<-read_excel("./GLM regional/glm_predict_all_reg3.xlsx",sheet="ESASFR_5")
 cleaned_DHS_ESASFR<-cleaned_DHS_ESASFR%>%filter(Region%in%c("Africa","North Africa"))
 
 DHS_no<-ggplot()+
@@ -1029,13 +1029,13 @@ DHS_high_other7<-ggplot()+
 
 library(gridExtra)
 
-png("./All countries Bayesian codes/Sensitivity/ASFR all_model comparison.png",width=2850, height=1850,res=150)
+png("./ASFR all_model comparison.png",width=2850, height=1850,res=150)
 grid.arrange(UN_1, DHS_1, UN_others1, DHS_others1, UN_others2, DHS_others2, UN_others3, DHS_others3, UN_others4, DHS_others4,
              UN_others5, DHS_others5, UN_others6, DHS_others6, UN_others7, DHS_others7,ncol = 3)
 dev.off()
 
 
-png("./All countries Bayesian codes/Sensitivity/ESASFR all_model comparison.png",width=4850, height=3550,res=150)
+png("./ESASFR all_model comparison.png",width=4850, height=3550,res=150)
 grid.arrange(DHS_no, DHS_no_other1, DHS_no_other2, DHS_no_other3, DHS_no_other4, DHS_no_other5, DHS_no_other6, DHS_no_other7,
              DHS_pri, DHS_pri_other1, DHS_pri_other2, DHS_pri_other3, DHS_pri_other4, DHS_pri_other5, DHS_pri_other6, DHS_pri_other7,
              DHS_sec, DHS_sec_other1, DHS_sec_other2, DHS_sec_other3, DHS_sec_other4, DHS_sec_other5, DHS_sec_other6, DHS_sec_other7,
@@ -1050,7 +1050,7 @@ dev.off()
 
 
 #Plotting for ASFR other model
-cleaned_DHS_ASFR<-read_excel("./All countries Bayesian codes/GLM regional/glm_predict_all_reg3.xlsx",sheet="ASFR_5")
+cleaned_DHS_ASFR<-read_excel("./GLM regional/glm_predict_all_reg3.xlsx",sheet="ASFR_5")
 cleaned_DHS_ASFR<-cleaned_DHS_ASFR%>%filter(Region%in%c("Africa","North Africa"))
 colnames(cleaned_DHS_ASFR)[7]<-"Age Group"
 cleaned_DHS_ASFR$`Age Group`[cleaned_DHS_ASFR$`Age Group`==15]<-"15-19" 
@@ -1070,7 +1070,7 @@ asfr<-full_join(asfr_un[,-5],cleaned_DHS_ASFR[,c(1:3,6,7,10)],
             by=c("Country","Country code","Year","Age Group"))
 
 
-png("./All countries Bayesian codes/Sensitivity/UN DHS.png",width=2850, height=1550)
+png("./UN DHS.png",width=2850, height=1550)
 
 ggplot()+
   geom_point(asfr, mapping = aes(x=ASFR,y=Asfr,group=interaction(Country,`Survey Year`),colour="DHS"))+
@@ -1207,8 +1207,9 @@ DHS_UN_others7<-ggplot()+
         axis.title = element_text(size=28))   
 
 
-png("./All countries Bayesian codes/Sensitivity/UN DHS ASFR all_model comparison.png",width=2850, height=1550)
+png("./UN DHS ASFR all_model comparison.png",width=2850, height=1550)
 grid.arrange(DHS_UN_1, DHS_UN_others1, DHS_UN_others2, DHS_UN_others3, DHS_UN_others4,
              DHS_UN_others5, DHS_UN_others6, DHS_UN_others7,ncol = 3)
 dev.off()
+
 
