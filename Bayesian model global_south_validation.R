@@ -44,7 +44,7 @@ asfr_UN2<-asfr_UN_ %>%
 
 asfr_UN2<-spread(asfr_UN2[,-c(1,5)],`Age Group`,Asfr)
 
-TFR_global_southedu<-read.csv("K:/project/BayesEdu/Fertility/ESTFR/cc_y_edu_all_paper_models.csv")%>%filter(Model.name=="UN-fully consistent",Chain=="1")
+TFR_global_southedu<-read.csv("./cc_y_edu_all_paper_models.csv")%>%filter(Model.name=="UN-fully consistent",Chain=="1")
 TFR_global_southedu$Country[TFR_global_southedu$Country=="C\xf4te D'Ivoire"]<-"Côte D'Ivoire"
 TFR_global_southedu<-as.data.frame(TFR_global_southedu)
 Encoding(TFR_global_southedu$Country) <- "UTF-8"
@@ -961,6 +961,7 @@ for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
 dev.off()
+
 
 
 
