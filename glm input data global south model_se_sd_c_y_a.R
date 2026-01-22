@@ -14,16 +14,7 @@ library(matrixStats)
 setwd(".")
 
 
-#Read in old Bayesian Estimates
-
-old_data_Africa<-read_excel("./BESFR_estimates Africa.xlsx")
-old_data_LA<-read_excel("./BESFR_estimates Latin America.xlsx")
-
-#Join the data!
-old_data<-full_join(old_data_Africa,old_data_LA)
-
-
-dat_global_southedu2_<-read_excel("./All countries Bayesian codes/GLM regional/glm_predict_all_reg3.xlsx")%>%
+dat_global_southedu2_<-read_excel("./glm_predict_all_reg3.xlsx")%>%
   filter(!Country%in%c("Papua New Guinea","Uzbekistan","Ukraine"))
 dat_global_southedu2_<-dat_global_southedu2_[order(dat_global_southedu2_$Country), -4]
 
@@ -126,16 +117,7 @@ mod_stringedu_global_south = "model {
       ESASFR_star_2[i,j]~dnorm(ESASFR_dhs_2[i,j],prec_esasfr[i,j])T(0,)
       ESASFR_star_3[i,j]~dnorm(ESASFR_dhs_3[i,j],prec_esasfr[i,j])T(0,)
       ESASFR_star_4[i,j]~dnorm(ESASFR_dhs_4[i,j],prec_esasfr[i,j])T(0,)
-      
-      
-      ESASFR_old_1[i,j]~dnorm(ESASFR_dhs_1[i,j],prec_esasfr[i,j])T(0,)
-      ESASFR_old_2[i,j]~dnorm(ESASFR_dhs_2[i,j],prec_esasfr[i,j])T(0,)
-      ESASFR_old_3[i,j]~dnorm(ESASFR_dhs_3[i,j],prec_esasfr[i,j])T(0,)
-      ESASFR_old_4[i,j]~dnorm(ESASFR_dhs_4[i,j],prec_esasfr[i,j])T(0,)
-      
-
-    
-      
+          
       ASFR_star[i,j]=ESASFR_star_1[i,j]*w_1[i,j] +  ESASFR_star_2[i,j]*w_2[i,j] +
       ESASFR_star_3[i,j]*w_3[i,j] + ESASFR_star_4[i,j]*w_4[i,j]
       
@@ -182,21 +164,6 @@ dat_global_southedu2_4<-dat_global_southedu2[,-c(4:6)]%>%spread(`Age Group`,`Sec
 dat_global_southedu2_4<-dat_global_southedu2_4[order(dat_global_southedu2_4$Country), ]
 
 
-
-#Old Bayesian estimates
-old_data2<-full_join(old_data[-c(5,6)],dat_global_southedu_[,c(1:4)])%>%distinct()%>%spread(Education,Median)
-dat_global_southedu2_1_<-old_data2[,-c(5:7)]%>%spread(`Age Group`,`Higher Education`)
-dat_global_southedu2_1_<-dat_global_southedu2_1_[order(dat_global_southedu2_1$Country), ]
-
-dat_global_southedu2_2_<-old_data2[,-c(4,6:7)]%>%spread(`Age Group`,`No Education`)
-dat_global_southedu2_2_<-dat_global_southedu2_2_[order(dat_global_southedu2_2$Country), ]
-
-dat_global_southedu2_3_<-old_data2[,-c(4,5,7)]%>%spread(`Age Group`,`Primary Education`)
-dat_global_southedu2_3_<-dat_global_southedu2_3_[order(dat_global_southedu2_3$Country), ]
-
-dat_global_southedu2_4_<-old_data2[,-c(4:6)]%>%spread(`Age Group`,`Secondary Education`)
-dat_global_southedu2_4_<-dat_global_southedu2_4_[order(dat_global_southedu2_4$Country), ]
-
 library(matrixStats)
 dat_global_southedu_se2<-dat_global_southedu2_[,-c(5,7)]%>%distinct()%>%spread(Education,SE)
 
@@ -224,11 +191,6 @@ jagsdat_global_south$ESASFR_dhs_1=as.matrix(dat_global_southedu2_1[,3:9])
 jagsdat_global_south$ESASFR_dhs_2=as.matrix(dat_global_southedu2_2[,3:9])
 jagsdat_global_south$ESASFR_dhs_3=as.matrix(dat_global_southedu2_3[,3:9])
 jagsdat_global_south$ESASFR_dhs_4=as.matrix(dat_global_southedu2_4[,3:9])
-
-jagsdat_global_south$ESASFR_old_1=as.matrix(dat_global_southedu2_1_[,3:9])
-jagsdat_global_south$ESASFR_old_2=as.matrix(dat_global_southedu2_2_[,3:9])
-jagsdat_global_south$ESASFR_old_3=as.matrix(dat_global_southedu2_3_[,3:9])
-jagsdat_global_south$ESASFR_old_4=as.matrix(dat_global_southedu2_4_[,3:9])
 
 jagsdat_global_south$ASFR_UN=as.matrix(asfr_UN[,3:9])
 jagsdat_global_south$ASFR_UN_var=(sd(asfr_UN_$Asfr)^2)
@@ -399,7 +361,7 @@ for(Country_ in Countries) {
 }
 
 
-pdf("./All countries Bayesian codes/Sensitivity/ESASFR init vs data qual glmmodel_se_sd_c_y_a.pdf", width=12,onefile = T)
+pdf("./ESASFR init vs data qual glmmodel_se_sd_c_y_a.pdf", width=12,onefile = T)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -452,7 +414,7 @@ for(Country_ in Countries) {
 }
 
 
-pdf("./All countries Bayesian codes/Sensitivity/ESASFR_dhs vs data qual glmmodel_se_sd_c_y_a.pdf", width=15,height=12,onefile = T)
+pdf("./ESASFR_dhs vs data qual glmmodel_se_sd_c_y_a.pdf", width=15,height=12,onefile = T)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -502,7 +464,7 @@ for(Country_ in Countries) {
   
 }
 
-pdf("./All countries Bayesian codes/Sensitivity/ASFR UN vs data qual glmmodel_se_sd_c_y_a.pdf",width = 12, onefile = TRUE)
+pdf("./ASFR UN vs data qual glmmodel_se_sd_c_y_a.pdf",width = 12, onefile = TRUE)
 for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
@@ -537,7 +499,7 @@ TFR_UN<-ASFR_UN%>%
 
 
 
-pdf("./All countries Bayesian codes/Sensitivity/TFR data qaul glmmodel_se_sd_c_y_a.pdf",width = 12, onefile = TRUE)
+pdf("./TFR data qaul glmmodel_se_sd_c_y_a.pdf",width = 12, onefile = TRUE)
 
 ggplot()+  
   geom_ribbon(bayesdat_TFR_1,mapping=aes(x=Year,ymin=unlist(Lower_CI),
@@ -673,7 +635,7 @@ bayesdat_global_south2<-bayesdat_global_south2%>%
   mutate(Education=factor(Education, levels=c("No Education","Primary Education","Secondary Education","Higher Education")))
 
 
-pdf("./All countries Bayesian codes/Sensitivity/ESTFR_dhs vs data qual glmmodel_se_sd_c_y_a.pdf",width = 12, onefile = TRUE)
+pdf("./ESTFR_dhs vs data qual glmmodel_se_sd_c_y_a.pdf",width = 12, onefile = TRUE)
 
 for(Country_ in Countries) {
   Country_plots[[Country_]] = ggplot()+ 
@@ -719,5 +681,6 @@ bayesdat_global_southtfr<-bayesdat_TFR_1%>%dplyr::select("Country","Year","Upper
 
 write_xlsx(list("BESASFR"=bayesdat_global_southesasfr,"BESTFR"=bayesdat_global_southestfr,
                 "ASFR"=bayesdat_global_southasfr,"TFR"=bayesdat_global_southtfr),
-           path ="./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_se_sd_c_y_a.xlsx", col_names=TRUE)
+           path ="./BESFR_data qaul glmmodel_se_sd_c_y_a.xlsx", col_names=TRUE)
+
 
