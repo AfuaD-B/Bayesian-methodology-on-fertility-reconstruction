@@ -19,7 +19,6 @@ dat_global_southedu2_<-read_excel("./All countries Bayesian codes/GLM regional/g
 dat_global_southedu2_<-dat_global_southedu2_[order(dat_global_southedu2_$Country), -4]
 
 
-
 TFR_africaedu<-read.csv("./cc_y_edu_all_paper_models.csv")%>%filter(Model.name=="UN-fully consistent",Chain=="1")
 TFR_africaedu$Country[TFR_africaedu$Country=="C\xf4te D'Ivoire"]<-"Côte D'Ivoire"
 TFR_africaedu<-as.data.frame(TFR_africaedu)
@@ -675,5 +674,6 @@ bayesdat_global_southtfr<-bayesdat_TFR_1%>%dplyr::select("Country","Year","Upper
 write_xlsx(list("BESASFR"=bayesdat_global_southesasfr,"BESTFR"=bayesdat_global_southestfr,
                 "ASFR"=bayesdat_global_southasfr,"TFR"=bayesdat_global_southtfr),
            path ="./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_edu_spec_sd.xlsx", col_names=TRUE)
+
 
 
