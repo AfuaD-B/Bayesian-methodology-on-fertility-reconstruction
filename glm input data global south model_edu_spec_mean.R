@@ -13,16 +13,6 @@ library(matrixStats)
 
 setwd(".")
 
-
-#Read in old Bayesian Estimates
-
-old_data_Africa<-read_excel("./BESFR_estimates Africa.xlsx")
-old_data_LA<-read_excel("./BESFR_estimates Latin America.xlsx")
-
-#Join the data!
-old_data<-full_join(old_data_Africa,old_data_LA)
-
-
 dat_global_southedu2_<-read_excel("./All countries Bayesian codes/GLM regional/glm_predict_all_reg3.xlsx")%>%
   filter(!Country%in%c("Papua New Guinea","Uzbekistan","Ukraine"))
 dat_global_southedu2_<-dat_global_southedu2_[order(dat_global_southedu2_$Country), -4]
@@ -129,14 +119,6 @@ mod_stringedu_global_south = "model {
       
       ESASFR_star_4[i,j]~dnorm(ESASFR_dhs_4[i,j],prec_esasfr4)T(0,)
       
-      
-      ESASFR_old_1[i,j]~dnorm(ESASFR_dhs_1[i,j],prec_esasfr1)T(0,)
-     
-      ESASFR_old_2[i,j]~dnorm(ESASFR_dhs_2[i,j],prec_esasfr2)T(0,)
-      
-      ESASFR_old_3[i,j]~dnorm(ESASFR_dhs_3[i,j],prec_esasfr3)T(0,)
-      
-      ESASFR_old_4[i,j]~dnorm(ESASFR_dhs_4[i,j],prec_esasfr4)T(0,)
       
       ASFR_star[i,j]=ESASFR_star_1[i,j]*w_1[i,j] +  ESASFR_star_2[i,j]*w_2[i,j] +
       ESASFR_star_3[i,j]*w_3[i,j] + ESASFR_star_4[i,j]*w_4[i,j]
@@ -669,6 +651,7 @@ bayesdat_global_southtfr<-bayesdat_TFR_1%>%dplyr::select("Country","Year","Upper
 write_xlsx(list("BESASFR"=bayesdat_global_southesasfr,"BESTFR"=bayesdat_global_southestfr,
                 "ASFR"=bayesdat_global_southasfr,"TFR"=bayesdat_global_southtfr),
            path ="./All countries Bayesian codes/Sensitivity/BESFR_data qaul glmmodel_edu_spec_mean.xlsx", col_names=TRUE)
+
 
 
 
