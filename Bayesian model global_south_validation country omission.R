@@ -13,15 +13,6 @@ library(matrixStats)
 
 setwd(".")
 
-#Read in old Bayesian Estimates
-
-old_data_Africa<-read_excel("./BESFR_estimates Africa.xlsx")
-old_data_LA<-read_excel("./BESFR_estimates Latin America.xlsx")
-
-#Join the data!
-old_data<-full_join(old_data_Africa,old_data_LA)
-
-
 dat_global_southedu2_<-read_excel("./All countries Bayesian codes/GLM regional/glm_predict_all_reg3.xlsx")%>%
   filter(!Country%in%c("Papua New Guinea","Uzbekistan","Ukraine"))
 dat_global_southedu2_<-dat_global_southedu2_[order(dat_global_southedu2_$Country), -4]
@@ -150,15 +141,7 @@ TFR_star[i]=(ASFR_star[i,1]+ASFR_star[i,2]+ASFR_star[i,3]+ASFR_star[i,4]+ASFR_st
       
       ESASFR_star_4[i,j]~dnorm(ESASFR_dhs_4[i,j],prec_esasfr4[i,j])T(0,)
       
-      
-      ESASFR_old_1[i,j]~dnorm(ESASFR_dhs_1[i,j],prec_esasfr1[i,j])T(0,)
-     
-      ESASFR_old_2[i,j]~dnorm(ESASFR_dhs_2[i,j],prec_esasfr2[i,j])T(0,)
-      
-      ESASFR_old_3[i,j]~dnorm(ESASFR_dhs_3[i,j],prec_esasfr3[i,j])T(0,)
-      
-      ESASFR_old_4[i,j]~dnorm(ESASFR_dhs_4[i,j],prec_esasfr4[i,j])T(0,)
-    
+         
     
     ASFR_star[i,j]=ESASFR_star_1[i,j]*w_1[i,j] +  ESASFR_star_2[i,j]*w_2[i,j] + ESASFR_star_3[i,j]*w_3[i,j] + ESASFR_star_4[i,j]*w_4[i,j]
       
@@ -209,22 +192,6 @@ dat_global_southedu_se2<-dat_global_southedu2_[,-c(5,7)]%>%distinct()%>%spread(E
 
 
 
-#Old Bayesian estimates
-old_data2<-full_join(old_data[-c(5,6)],dat_global_southedu_[,c(1:4)])%>%distinct()%>%spread(Education,Median)
-dat_global_southedu2_1_<-old_data2[,-c(5:7)]%>%spread(`Age Group`,`Higher Education`)
-dat_global_southedu2_1_<-dat_global_southedu2_1_[order(dat_global_southedu2_1$Country), ]
-
-dat_global_southedu2_2_<-old_data2[,-c(4,6:7)]%>%spread(`Age Group`,`No Education`)
-dat_global_southedu2_2_<-dat_global_southedu2_2_[order(dat_global_southedu2_2$Country), ]
-
-dat_global_southedu2_3_<-old_data2[,-c(4,5,7)]%>%spread(`Age Group`,`Primary Education`)
-dat_global_southedu2_3_<-dat_global_southedu2_3_[order(dat_global_southedu2_3$Country), ]
-
-dat_global_southedu2_4_<-old_data2[,-c(4:6)]%>%spread(`Age Group`,`Secondary Education`)
-dat_global_southedu2_4_<-dat_global_southedu2_4_[order(dat_global_southedu2_4$Country), ]
-
-
-
 set.seed(122)
 jagsdat_global_south = as.list(dat_global_southedu2_1)
 jagsdat_global_south$period=as.matrix(dat_global_southedu2_1[,1])
@@ -239,11 +206,6 @@ jagsdat_global_south$ESASFR_dhs_2=as.matrix(dat_global_southedu2_2[,3:9])
 jagsdat_global_south$ESASFR_dhs_3=as.matrix(dat_global_southedu2_3[,3:9])
 jagsdat_global_south$ESASFR_dhs_4=as.matrix(dat_global_southedu2_4[,3:9])
 
-
-jagsdat_global_south$ESASFR_old_1=as.matrix(dat_global_southedu2_1_[,3:9])
-jagsdat_global_south$ESASFR_old_2=as.matrix(dat_global_southedu2_2_[,3:9])
-jagsdat_global_south$ESASFR_old_3=as.matrix(dat_global_southedu2_3_[,3:9])
-jagsdat_global_south$ESASFR_old_4=as.matrix(dat_global_southedu2_4_[,3:9])
 
 
 jagsdat_global_south$ASFR_UN=as.matrix(asfr_UN2[,3:9])
@@ -994,5 +956,6 @@ for (Country_ in seq(length(Country_plots))){
   grid.arrange(Country_plots[[Country_]])  
 }
 dev.off()
+
 
 
