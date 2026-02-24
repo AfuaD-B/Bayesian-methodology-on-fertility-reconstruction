@@ -22,6 +22,7 @@ The Stata `tfr2` module operates on IR (Individual Recode) files from the Demogr
 - input data for the WIC population sizes by education `WIC_datasets.xlsx`
 - educational differences output `edu_diff.xlsx`
 - priors `edu_spec_sd_init_prior.xlsx`
+- plots of resuls `final results_plots.pdf`
   
 - ## alternative models in R
 `glm input data global south model_alpha_beta.R`
